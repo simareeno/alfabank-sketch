@@ -3,7 +3,7 @@
   "identifier": "ru.alfabank.sketch",
   "version": "0.1.0",
   "description": "Alfa design components. Always actual.",
-  "appcast": "https://sketch-material.firebaseapp.com/static/sketch/appcast.xml",
+  "appcast": "https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/appcast.xml",
   "authorEmail": "sima@chetverukhin.ru",
   "author": "Simon Chetverukhin",
   "menu": {

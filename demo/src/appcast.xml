@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Alfa</title>
+    <link>https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/appcast.xml</link>
+    <description>Alfa design components. Always actual.</description>
+    <language>en</language>
+    <item>
+        <title>Version 0.1.0</title>
+        <title>Initial version, hosted on Surge.</title>
+        <enclosure url="https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/alfa.sketchplugin.0.1.0.zip" sparkle:version="0.1.0"/>
+    </item>
+  </channel>
+</rss>

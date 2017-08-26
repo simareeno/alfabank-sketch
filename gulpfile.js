@@ -16,6 +16,7 @@ const path = require('path'),
   postCSS = require('gulp-postcss'),
   less = require('gulp-less'),
   plumber = require('gulp-plumber'),
+  manifest = require('gulp-appcache'),
   notify = require('gulp-notify'),
   autoPrefixer = require('autoprefixer'),
   minify = require('cssnano'),
@@ -74,6 +75,21 @@ gulp.task('scripts', function() {
     )
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(gulp.dest(join(OUT)));
+});
+
+gulp.task('manifest', function() {
+  return gulp
+    .src(['demo/out/**/*'])
+    .pipe(
+      manifest({
+        hash: true,
+        preferOnline: true,
+        network: ['http://*', 'https://*', '*'],
+        filename: 'cache.manifest',
+        exclude: 'cache.manifest'
+      })
+    )
+    .pipe(gulp.dest('demo/out'));
 });
 
 gulp.task('styles', function() {
@@ -180,6 +196,7 @@ gulp.task('default', function() {
     'scripts',
     'styles',
     'images',
+    'manifest',
     'run-server'
   );
 });

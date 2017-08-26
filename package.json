@@ -19,6 +19,7 @@
     "glob": "^7.1.2",
     "glob-fs": "^0.1.6",
     "gulp": "^3.9.1",
+    "gulp-appcache": "0.0.4",
     "gulp-babel": "^6.1.2",
     "gulp-cheerio": "^0.6.2",
     "gulp-concat": "^2.6.1",
