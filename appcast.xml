@@ -6,9 +6,14 @@
     <description>Alfa design components. Always actual.</description>
     <language>en</language>
     <item>
+        <title>Version 0.1.1</title>
+        <title>Test update system.</title>
+        <enclosure url="https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/versions/alfa.sketchplugin.latest.zip" sparkle:version="0.1.1"/>
+    </item>
+    <item>
         <title>Version 0.1.0</title>
         <title>Initial version, hosted on Surge.</title>
-        <enclosure url="https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/versions/alfa.sketchplugin.0.1.0.zip" sparkle:version="0.1.0"/>
+        <enclosure url="https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/versions/alfa.sketchplugin.latest.zip" sparkle:version="0.1.0"/>
     </item>
   </channel>
 </rss>
