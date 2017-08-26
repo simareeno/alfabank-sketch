@@ -3,4 +3,4 @@
 
 [Скачать](https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/versions/alfa.sketchplugin.latest.zip)
 
-![alfabank-sketch-gif](http://chetverukhin.ru/alfabank-sketch/alfasketch-ps.gif "alfabank-sketch-gif")
+<img width="640" height="443" src="http://chetverukhin.ru/alfabank-sketch/alfasketch-ps.gif "alfabank-sketch-gif"" />
