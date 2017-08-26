@@ -1,0 +1,8 @@
+@import "scripts/common.js";
+@import "scripts/MochaJSDelegate.js";
+
+// Init
+function commandInit(context) { MD.init(context, "init"); }
+
+// Icons
+function commandIcons(context) { MD.init(context, "importer"); }
