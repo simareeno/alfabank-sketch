@@ -7,12 +7,12 @@
     <language>en</language>
     <item>
         <title>Version 0.1.1</title>
-        <title>Test update.</title>
+        <description>Test update.</description>
         <enclosure url="https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/versions/alfa.sketchplugin.latest.zip" sparkle:version="0.1.1"/>
     </item>
     <item>
         <title>Version 0.1.0</title>
-        <title>Initial version, hosted on Surge.</title>
+        <description>Initial version.</description>
         <enclosure url="https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/versions/alfa.sketchplugin.0.1.0.zip" sparkle:version="0.1.0"/>
     </item>
   </channel>
