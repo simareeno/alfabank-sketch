@@ -1,0 +1,34 @@
+{
+  "name": "Alfa",
+  "identifier": "ru.alfabank.sketch",
+  "version": "0.1.0",
+  "description": "Alfa design components. Always actual.",
+  "appcast": "http://chetverukhin.ru/alfabank-sketch/appcast.xml",
+  "authorEmail": "sima@chetverukhin.ru",
+  "author": "Simon Chetverukhin",
+  "menu": {
+    "isRoot": true,
+    "shortcut": "",
+    "items": ["commandIcons"],
+    "title": "🅰️ Alfa"
+  },
+  "commands": [
+    {
+      "name": "🅰️ Icons",
+      "identifier": "commandIcons",
+      "handler": "commandIcons",
+      "script": "md.sketchscript",
+      "shortcut": "cmd + shift + i"
+    },
+    {
+      "name": "Init",
+      "identifier": "commandInit",
+      "handlers": {
+        "actions": {
+          "OpenDocument": "commandInit"
+        }
+      },
+      "script": "md.sketchscript"
+    }
+  ]
+}

@@ -122,29 +122,17 @@ gulp.task('generateJSON', function() {
     fs.readdir(iconsFolder, (err, files) => {
       let counter = 0;
       files.forEach((file, index, array) => {
-        fs.stat(iconsFolder + '/' + file, function(err, stats) {
-          if (stats.isDirectory()) {
-            let folderName = file;
+        counter++;
+        if (/svg/.test(file) !== false) {
+          let icon = {};
+          icon.name = path.basename(file);
+          obj['icons'].push(icon);
 
-            let iconsFromFoler = fs
-              .readdirSync(iconsFolder + '/' + folderName)
-              .filter(function(a) {
-                return /svg/.test(a);
-              });
-
-            iconsFromFoler.forEach(file => {
-              let icon = {};
-              icon.name = path.basename(file);
-              icon.category = folderName;
-              obj['icons'].push(icon);
-            });
-          }
-
-          counter++;
+          console.log(counter, array.length);
           if (counter === array.length) {
             callback();
           }
-        });
+        }
       });
     });
   }

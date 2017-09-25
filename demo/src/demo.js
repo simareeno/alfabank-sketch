@@ -2,7 +2,7 @@ $ = require('jquery');
 
 $(function() {
   let iconsObj = {};
-  let colors = ['all', 'color', 'white', 'colored'];
+  let colors = ['all', 'black', 'white', 'color'];
   let sizes = ['all', 's', 'm', 'l', 'xl', 'xxl'];
   let currentColor = colors[0];
   let currentSize = sizes[0];
@@ -46,7 +46,7 @@ $(function() {
     $('.icons').addClass('icons--color-' + currentColor);
     $('.header__color').addClass('header__color--' + currentColor);
 
-    if (currentColor === 'color') {
+    if (currentColor === 'black') {
       $('.icons').addClass('icons--black');
     } else {
       $('.icons').removeClass('icons--black');
@@ -90,25 +90,33 @@ function showIcons(iconsObj, searchKey) {
     let tempArray = [];
     let isSearched = new RegExp(searchKey, 'g');
     let counter = 0;
+    let nameRegExp = new RegExp(/([a-z]+_)(.*)(?=_.*)/, 'i');
 
     iconsArray.map(function(icon) {
       fileName = icon.name;
       name = icon.name.replace(/\.svg/, '');
+      size = 'black';
+      // console.log(name);
+      // let nameWithoutSvg = icon.name.replace(/\.svg/, '');
       color = name.match(/[^_]+$/)[0];
       name = name.replace(/[^_]+$/, '');
       name = name.replace(/[_]+$/, '');
       size = name.match(/[^_]+$/)[0];
-      name = name.replace(/[^_]+$/, '');
-      name = name.replace(/[_]+$/, '');
+      name = name.match(nameRegExp)[2];
+      console.log(size);
 
       if (isSearched.test(name)) {
+        // console.log(nameWithoutSvg, isSearched, isSearched.test(nameWithoutSvg));
+        // console.log(nameWithoutSvg, isSearched)
         tempArray.push({
           name: name,
-          category: icon.category,
           color: color,
           size: size,
           fileName: icon.name
         });
+      }
+
+      if (isSearched.test(name)) {
       }
     });
     return tempArray;
@@ -127,7 +135,7 @@ function showIcons(iconsObj, searchKey) {
     let iconTitle = document.createElement('div');
     iconTitle.textContent = icon.name;
     // iconTitle.textContent = iconTitle.textContent.slice(5, -4);
-    iconImage.src = '/icons/' + icon.category + '/' + icon.fileName;
+    iconImage.src = '/icons/' + icon.fileName;
     iconImage.onload = function(e) {
       $(this).parent('.icon').removeClass('icon--inactive');
     };

@@ -76,8 +76,8 @@ body {
 
   &--size-all {
     .icon {
-      width: 48px !important;
-      height: 48px !important;
+      width: 320px / 4 !important;
+      height: 60px !important;
     }
   }
 
@@ -121,53 +121,42 @@ body {
   flex-wrap: wrap;
   margin: 10px 0;
   transition: all .2s ease-in-out;
+  cursor: pointer;
+
+  &:active {
+    cursor: -webkit-drag;
+  }
+
+  &:focus {
+    cursor: -webkit-drag;
+  }
 
   &--s {
-    width: 18px * 2;
-    height: 18px;
-
-    .icon__title {
-      font-size: 8px;
-    }
+    width: 320px / 4;
+    height: 18px * 2;
   }
 
   &--m {
-    width: 24px * 2;
-    height: 24px;
-
-    .icon__title {
-      font-size: 10px;
-    }
+    width: 320px / 4;
+    height: 24px * 2;
   }
 
   &--l {
-    width: 30px * 2;
-    height: 30px;
-
-    .icon__title {
-      font-size: 10px;
-    }
+    width: 320px / 4;
+    height: 30px * 2;
   }
 
   &--xl {
-    width: 36px * 2;
-    height: 36px;
-
-    .icon__title {
-      font-size: 10px;
-    }
+    width: 320px / 4;
+    height: 36px * 2;
   }
 
   &--xxl {
-    width: 48px * 2;
-    height: 48px;
-
-    .icon__title {
-      font-size: 10px;
-    }
+    width: 320px / 4;
+    height: 48px * 2;
   }
 
-  &--color {
+  &--white {
     img {
       background: black;
       padding: 2px;
@@ -202,6 +191,9 @@ body {
 
   &__title {
     width: 100%;
+    padding: 4px;
+    font-size: 10px;
+    line-height: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
@@ -269,20 +261,20 @@ body {
     box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0);
   }
 
-  &--white {
+  &--black {
     &:after {
       background: black;
     }
   }
 
-  &--color {
+  &--white {
     &:after {
       background: white;
       box-shadow: inset 0 0 0 2px rgba(0, 0, 0, .1);
     }
   }
 
-  &--colored {
+  &--color {
     &:after {
       background: #f03226;
     }
@@ -300,24 +292,24 @@ body {
 }
 
 .icons--color- {
-  &color {
-    .icon--white,
-    .icon--colored {
+  &black {
+    .icon--black,
+    .icon--color {
       display: none;
     }
   }
 
   &white {
     .icon--color,
-    .icon--colored {
+    .icon--white {
       display: none;
       color: transparent;
     }
   }
 
-  &colored {
+  &color {
     .icon--white,
-    .icon--color {
+    .icon--black {
       display: none;
     }
   }
