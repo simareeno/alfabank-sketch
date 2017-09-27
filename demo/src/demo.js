@@ -103,7 +103,6 @@ function showIcons(iconsObj, searchKey) {
       name = name.replace(/[_]+$/, '');
       size = name.match(/[^_]+$/)[0];
       name = name.match(nameRegExp)[2];
-      console.log(size);
 
       if (isSearched.test(name)) {
         // console.log(nameWithoutSvg, isSearched, isSearched.test(nameWithoutSvg));
@@ -143,6 +142,7 @@ function showIcons(iconsObj, searchKey) {
     iconNode.classList.add('icon--inactive');
     iconTitle.classList.add('icon__title');
     iconImage.classList.add('icon__image');
+    console.log(icon.color, icon);
     iconNode.classList.add('icon--' + icon.size);
     iconNode.classList.add('icon--' + icon.color);
     // iconNode.classList.add('icon--' + icon.type);

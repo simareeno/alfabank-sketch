@@ -1,16 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
-    <title>icon_power_card__m__white</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="icon_power_card__m__white">
-            <rect id="Rectangle" x="0" y="0" width="24" height="24"></rect>
-            <g id="Group" transform="translate(2.000000, 2.000000)" fill-rule="nonzero" fill="#FFFFFF">
-                <path d="M14.6,1.1 C14.4,1.6 14.2,2.2 13.9,3 C16.4,4.4 18.1,7 18.1,10 C18.1,14.4 14.5,18 10.1,18 C5.7,18 2.1,14.4 2.1,10 C2.1,6.9 3.8,4.3 6.3,2.9 L5.5,1.1 C2.2,2.7 0,6.1 0,10 C0,15.5 4.5,20 10,20 C15.5,20 20,15.5 20,10 C20,6.1 17.8,2.8 14.6,1.1 Z" id="Shape"></path>
-                <rect id="Rectangle-2" x="9" y="0" width="2" height="10"></rect>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><g fill="#FFF" fill-rule="nonzero"><path d="M16.6 3.1c-.2.5-.4 1.1-.7 1.9 2.5 1.4 4.2 4 4.2 7 0 4.4-3.6 8-8 8s-8-3.6-8-8c0-3.1 1.7-5.7 4.2-7.1l-.8-1.8C4.2 4.7 2 8.1 2 12c0 5.5 4.5 10 10 10s10-4.5 10-10c0-3.9-2.2-7.2-5.4-8.9z"/><path d="M11 2h2v10h-2z"/></g></g></svg>
