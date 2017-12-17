@@ -1,9 +1,10 @@
 {
   "name": "Alfa",
   "identifier": "ru.alfabank.sketch",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "Alfa design components. Always actual.",
   "appcast": "https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/appcast.xml",
+  "icon" : "alfabank-sketch.png",
   "authorEmail": "sima@chetverukhin.ru",
   "author": "Simon Chetverukhin",
   "menu": {

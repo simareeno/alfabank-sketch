@@ -12,7 +12,6 @@ body {
 
 .header {
   display: flex;
-  justify-content: space-between;
   width: 100%;
   height: 50px;
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, .05);
@@ -22,7 +21,7 @@ body {
   z-index: 2;
 
   &__search {
-    max-width: 220px;
+    width: 100%;
     display: flex;
     justify-content: center;
   }
@@ -76,6 +75,7 @@ body {
 .icons {
   margin: 0 auto;
   color: black;
+  width: 100%;
   height: 100%;
   margin-top: 50px;
 
@@ -100,6 +100,10 @@ body {
     .icon__title {
       color: rgba(255, 255, 255, .25);
     }
+
+    .icon--inactive img {
+      background: rgba(255, 255, 255, .08)!important;
+    }
   }
 
   .icon--input {
@@ -116,7 +120,11 @@ body {
 }
 
 .categories__list {
-  padding-top: 25px;
+  padding: 24px 0 12px;
+  width: 100%;
+  height: 100%;
+  // overflow-y: scroll;
+  // padding-right: 17px;
   transition: background .2s ease-in-out;
 }
 
