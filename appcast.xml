@@ -13,7 +13,7 @@
     <item>
         <title>Version 0.1.1</title>
         <description>Test update.</description>
-        <enclosure url="https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/versions/alfa.sketchplugin.latest.zip" sparkle:version="0.1.1"/>
+        <enclosure url="https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/versions/alfa.sketchplugin.0.1.1.zip" sparkle:version="0.1.1"/>
     </item>
     <item>
         <title>Version 0.1.0</title>
