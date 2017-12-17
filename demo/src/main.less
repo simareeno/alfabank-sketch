@@ -77,7 +77,6 @@ body {
   margin: 0 auto;
   color: black;
   height: 100%;
-  transition: background .2s ease-in-out;
   margin-top: 50px;
 
   &--size-all {
@@ -90,8 +89,12 @@ body {
   &--black {
     background: black;
 
-    .icons__list {
+    .categories__list {
       background: black;
+    }
+
+    .category__name {
+      color: rgba(255, 255, 255, .25);
     }
 
     .icon__title {
@@ -112,11 +115,30 @@ body {
   }
 }
 
-.icons__list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding-top: 12px;
+.categories__list {
+  padding-top: 25px;
+  transition: background .2s ease-in-out;
+}
+
+.category {
+
+  &__name {
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 12px 12px;
+    color: rgba(0, 0, 0, .3);
+  }
+
+  &__icons {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  & + & {
+    margin-top: 24px;
+  }
 }
 
 .icon {

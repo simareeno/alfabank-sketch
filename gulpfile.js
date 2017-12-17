@@ -1,181 +1,118 @@
-const path = require('path'),
-  fs = require('fs'),
-  join = path.join,
-  del = require('del'),
-  gulp = require('gulp'),
-  gulpif = require('gulp-if'),
-  svgmin = require('gulp-svgmin'),
-  insert = require('gulp-insert'),
-  replace = require('gulp-replace'),
-  concat = require('gulp-concat'),
-  cheerio = require('gulp-cheerio'),
-  babel = require('gulp-babel'),
-  runSequence = require('run-sequence'),
-  webpack = require('webpack-stream'),
-  browserSync = require('browser-sync').create(),
-  postCSS = require('gulp-postcss'),
-  less = require('gulp-less'),
-  plumber = require('gulp-plumber'),
-  manifest = require('gulp-appcache'),
-  notify = require('gulp-notify'),
-  autoPrefixer = require('autoprefixer'),
-  minify = require('cssnano'),
-  glob = require('glob-fs')({ gitignore: true }),
-  DEMO = 'demo',
-  ICONS = 'icons';
-OUT = join(DEMO, 'out');
+const path = require('path');
+const fs = require('fs');
 
-gulp.task('icons', function() {
-  return gulp
-    .src(join(ICONS, '**/*.svg'))
-    .pipe(
-      svgmin({
-        plugins: [
-          {
-            removeTitle: true // Убираем заголовки
-          },
-          {
-            removeDesc: true // и описания
-          },
-          {
-            sortAttrs: true // сортируем аттрибуты для наглядности
-          },
-          {
-            removeStyleElement: true // на всякий случай убираем тэги <style>
-          },
-          {
-            removeScriptElement: true // и <script>
-          }
-        ]
-      })
-    )
-    .pipe(gulp.dest(ICONS))
-    .pipe(gulp.dest(join(OUT, 'icons')));
-});
+const join = path.join;
+const del = require('del');
+const gulp = require('gulp');
+const glob = require('glob');
+const concat = require('gulp-concat');
+const babel = require('gulp-babel');
+const runSequence = require('run-sequence');
+const webpack = require('webpack-stream');
+const browserSync = require('browser-sync').create();
+const postCSS = require('gulp-postcss');
+const less = require('gulp-less');
+const plumber = require('gulp-plumber');
+const manifest = require('gulp-appcache');
+const notify = require('gulp-notify');
+const autoPrefixer = require('autoprefixer');
+const minify = require('cssnano');
 
-gulp.task('clean', function() {
-  return del(join(OUT));
-});
+const DEMO = 'demo';
+const ICONS = 'node_modules/alfa-ui-primitives/icons';
+const OUT = join(DEMO, 'out');
 
-gulp.task('templates', function() {
-  return gulp.src(join(DEMO, 'src/demo.html')).pipe(gulp.dest(join(OUT)));
-});
+gulp.task('icons', () => gulp
+  .src(join(ICONS, '**/*.svg'))
+  .pipe(gulp.dest(ICONS))
+  .pipe(gulp.dest(join(OUT, 'icons'))));
 
-gulp.task('images', function() {
-  return gulp.src(join(DEMO, 'src/*.svg')).pipe(gulp.dest(join(OUT)));
-});
+gulp.task('clean', () => del(join(OUT)));
 
-gulp.task('scripts', function() {
-  return gulp
-    .src(join(DEMO, 'src/*.js'))
-    .pipe(
-      babel({
-        presets: ['es2015']
-      })
-    )
-    .pipe(webpack(require('./webpack.config.js')))
-    .pipe(gulp.dest(join(OUT)));
-});
+gulp.task('templates', () => gulp.src(join(DEMO, 'src/demo.html')).pipe(gulp.dest(join(OUT))));
 
-gulp.task('manifest', function() {
-  return gulp
-    .src(['demo/out/**/*'])
-    .pipe(
-      manifest({
-        hash: true,
-        preferOnline: true,
-        network: ['http://*', 'https://*', '*'],
-        filename: 'cache.manifest',
-        exclude: 'cache.manifest'
-      })
-    )
-    .pipe(gulp.dest('demo/out'));
-});
+gulp.task('images', () => gulp.src(join(DEMO, 'src/*.svg')).pipe(gulp.dest(join(OUT))));
 
-gulp.task('styles', function() {
-  let processors = [autoPrefixer({ browsers: ['last 2 versions'] }), minify()];
+gulp.task('scripts', () => gulp
+  .src(join(DEMO, 'src/*.js'))
+  .pipe(babel({
+    presets: ['es2015'],
+  }))
+  .pipe(webpack(require('./webpack.config.js')))
+  .pipe(gulp.dest(join(OUT))));
+
+gulp.task('styles', () => {
+  const processors = [autoPrefixer({ browsers: ['last 2 versions'] }), minify()];
 
   return gulp
     .src(join(DEMO, 'src/main.less'))
-    .pipe(
-      plumber({
-        errorHandler: notify.onError(function(err) {
-          return {
-            title: 'LESS',
-            message: err.message
-          };
-        })
-      })
-    )
+    .pipe(plumber({
+      errorHandler: notify.onError(err => ({
+        title: 'LESS',
+        message: err.message,
+      })),
+    }))
     .pipe(less())
     .pipe(postCSS(processors))
     .pipe(concat('styles.css'))
     .pipe(gulp.dest(join(OUT)));
 });
 
-gulp.task('generateJSON', function() {
-  let iconsFolder = 'icons';
-  var obj = {};
-  obj['icons'] = [];
+gulp.task('generateJSON', () => {
+  const obj = {};
+  obj.icons = [];
 
-  function getAllIcons(callback) {
-    fs.readdir(iconsFolder, (err, files) => {
+  const getAllIcons = (callback) => {
+    glob(join(ICONS, '**/*.svg'), (err, files) => {
       let counter = 0;
-      files.forEach((file, index, array) => {
-        counter++;
-        if (/svg/.test(file) !== false) {
-          let icon = {};
-          icon.name = path.basename(file);
-          obj['icons'].push(icon);
-
-          console.log(counter, array.length);
-          if (counter === array.length) {
-            callback();
+      files
+        .forEach((file, index, array) => {
+          counter += 1;
+          if (/svg/.test(file) !== false && !/_xs_|art_/.test(file)) {
+            const icon = {};
+            icon.name = path.basename(file);
+            icon.category = path.basename(path.dirname(file));
+            obj.icons.push(icon);
+            if (counter === array.length) callback();
           }
-        }
-      });
+        });
     });
-  }
+  };
 
-  getAllIcons(function() {
-    finalJSON = JSON.stringify(obj);
-
-    fs.writeFile('demo/out/icons.json', finalJSON, function(err) {
-      if (err) {
-        return console.log(err);
-      }
-    });
+  getAllIcons(() => {
+    const finalJSON = JSON.stringify(obj);
+    fs.writeFile('demo/out/icons.json', finalJSON, err => (err ? console.log(err) : null));
   });
 });
 
-gulp.task('styles:sync', ['styles'], function(done) {
+gulp.task('styles:sync', ['styles'], (done) => {
   browserSync.reload();
   done();
 });
 
-gulp.task('templates:sync', ['templates'], function(done) {
+gulp.task('templates:sync', ['templates'], (done) => {
   browserSync.reload();
   done();
 });
 
-gulp.task('scripts:sync', ['scripts'], function(done) {
+gulp.task('scripts:sync', ['scripts'], (done) => {
   browserSync.reload();
   done();
 });
 
-gulp.task('run-server', function() {
+gulp.task('run-server', () => {
   browserSync.init({
     server: {
-      baseDir: '.'
+      baseDir: '.',
     },
-    startPath: './demo/out/demo.html'
+    startPath: './demo/out/demo.html',
   });
   gulp.watch(join(DEMO, '/src/*.html'), ['templates:sync']);
   gulp.watch(join(DEMO, '/src/*.js'), ['scripts:sync']);
   gulp.watch(join(DEMO, '/src/*.less'), ['styles:sync']);
 });
 
-gulp.task('default', function() {
+gulp.task('default', () => {
   runSequence(
     'clean',
     'icons',
@@ -184,7 +121,6 @@ gulp.task('default', function() {
     'scripts',
     'styles',
     'images',
-    'manifest',
-    'run-server'
+    'run-server',
   );
 });
