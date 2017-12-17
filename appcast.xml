@@ -6,6 +6,11 @@
     <description>Alfa design components. Always actual.</description>
     <language>en</language>
     <item>
+        <title>Version 1.0.0</title>
+        <description>First major version, size update</description>
+        <enclosure url="https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/versions/alfa.sketchplugin.latest.zip" sparkle:version="1.0.0"/>
+    </item>
+    <item>
         <title>Version 0.1.1</title>
         <description>Test update.</description>
         <enclosure url="https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/versions/alfa.sketchplugin.latest.zip" sparkle:version="0.1.1"/>
