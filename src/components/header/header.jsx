@@ -21,10 +21,6 @@ const SIZES = [
 
 export default class Header extends Component {
   render() {
-    return <div>{this.renderContent()}</div>;
-  }
-
-  renderContent() {
     return (
       <header className="header">
         <div className="header__search">

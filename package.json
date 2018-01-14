@@ -12,7 +12,8 @@
     "test": "run-s -n build-css test-js",
     "test-js": "react-scripts test --env=jsdom",
     "build-css": "node-less-chokidar src",
-    "watch-css": "node-less-chokidar src --watch"
+    "watch-css": "node-less-chokidar src --watch",
+    "build:icons": "node ./src/utils/build-icons.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +25,9 @@
   },
   "dependencies": {
     "arui-feather": "^12.0.1",
+    "gulp": "^3.9.1",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "run-sequence": "^2.2.1"
   }
 }

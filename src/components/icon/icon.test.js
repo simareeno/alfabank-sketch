@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './header';
+import Icon from './header';
 
-test('Header should render correctly', () => {
-  const header = document.createElement('div');
-  ReactDOM.render(<Header />, header);
+test('Icon should render correctly', () => {
+  const icon = document.createElement('div');
+  ReactDOM.render(<Icon />, icon);
 });

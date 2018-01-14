@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Input from 'arui-feather/input';
 import Select from 'arui-feather/select';
 
-import './icon.less';
+import './icon.css';
 
 const COLORS = [
   { value: 'all', text: 'Все' },
