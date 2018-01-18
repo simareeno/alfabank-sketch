@@ -1,0 +1,35 @@
+.icons {
+  margin: 0 auto;
+  color: black;
+  width: 100%;
+  height: 100%;
+  margin-top: 50px;
+}
+.icons--size-all .icon {
+  width: 80px !important;
+  height: 60px !important;
+}
+.icons--black {
+  background: black;
+}
+.icons--black .categories__list {
+  background: black;
+}
+.icons--black .category__name {
+  color: rgba(255, 255, 255, 0.25);
+}
+.icons--black .icon__title {
+  color: rgba(255, 255, 255, 0.25);
+}
+.icons--black .icon--inactive img {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+.icons .icon--input {
+  display: none;
+}
+.icons--compare {
+  width: 400px;
+}
+.icons--compare .icon--input {
+  display: flex;
+}

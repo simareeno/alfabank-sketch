@@ -1,0 +1,15 @@
+.category__name {
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 12px 12px;
+  color: rgba(0, 0, 0, 0.3);
+}
+.category__icons {
+  display: flex;
+  flex-wrap: wrap;
+}
+.category + .category {
+  margin-top: 24px;
+}

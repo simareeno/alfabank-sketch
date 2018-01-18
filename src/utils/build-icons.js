@@ -1,11 +1,12 @@
 const path = require('path');
 const fs = require('fs');
+const uppercamelcase = require('uppercamelcase');
 
 const INPUT_FOLDER = 'node_modules/arui-feather/icon';
-const OUTPUT_FILE = 'public/icons.json';
+const OUTPUT_FILE = 'src/icons.json';
 
 const clean = new Promise(resolve => {
-  fs.unlinkSync(OUTPUT_FILE);
+  if (fs.existsSync(path)) fs.unlinkSync(OUTPUT_FILE);
   resolve();
 });
 
@@ -22,14 +23,16 @@ const getIcons = categories =>
     const icons = categories.reduce(
       (result, category, index, array) => {
         const total = result;
-        total.icons = total.icons.concat(
+        total.icons = [
+          ...total.icons,
           fs.readdirSync(category).map(icon => {
             return {
               name: icon,
-              category: path.basename(category)
+              category: path.basename(category),
+              componentName: `Icon${uppercamelcase(icon)}`
             };
           })
-        );
+        ];
         return total;
       },
       { icons: [] }

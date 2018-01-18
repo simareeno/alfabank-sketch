@@ -29,8 +29,10 @@ $(() => {
     goSize(sizes[sizeIndex]);
   });
 
-  $('.search').on('keyup', (e) => {
-    let key = $('.search').val().toLowerCase();
+  $('.search').on('keyup', e => {
+    let key = $('.search')
+      .val()
+      .toLowerCase();
     showIcons(iconsObj, key);
   });
 
@@ -48,7 +50,7 @@ $(() => {
     } else {
       $('.icons').removeClass('icons--black');
     }
-  }
+  };
 
   const goSize = neededSize => {
     currentSize = neededSize;
@@ -63,7 +65,7 @@ $(() => {
     } else {
       $('.header__size').text('size');
     }
-  }
+  };
 
   goColor(currentColor);
   goSize(currentSize);
@@ -75,7 +77,7 @@ const compare = (a, b) => {
   if (a.size < b.size) return -1;
   if (a.size > b.size) return 1;
   return 0;
-}
+};
 
 const showIcons = (iconsObj, searchKey) => {
   let icons = document.createElement('div');
@@ -109,15 +111,16 @@ const showIcons = (iconsObj, searchKey) => {
           fileName: icon.name
         });
       }
-      if (isSearched.test(name)) { }
+      if (isSearched.test(name)) {
+      }
     });
 
     return tempArray;
-  }
+  };
 
-  iconsArray = searchKey ?
-    pushIcons(tempIconsObj.icons, 'icons', searchKey) :
-    pushIcons(tempIconsObj.icons, 'icons');
+  iconsArray = searchKey
+    ? pushIcons(tempIconsObj.icons, 'icons', searchKey)
+    : pushIcons(tempIconsObj.icons, 'icons');
 
   for (let category of categories) {
     const categoryNode = document.createElement('div');
@@ -132,27 +135,29 @@ const showIcons = (iconsObj, searchKey) => {
     categoryNode.append(categoryIcons);
 
     iconsArray
-    .filter(icon => icon.category === category)
-    .sort(compare)
-    .map(icon => {
-      const iconNode = document.createElement('div');
-      const iconImage = document.createElement('img');
-      const iconTitle = document.createElement('div');
-      iconTitle.textContent = icon.name;
-      iconImage.src = 'icons/' + icon.category + '/' + icon.fileName;
-      iconImage.onload = e => $(this).parent('.icon').removeClass('icon--inactive');
-      iconNode.classList.add('icon');
-      iconNode.classList.add('icon--inactive');
-      iconTitle.classList.add('icon__title');
-      iconImage.classList.add('icon__image');
-      iconNode.classList.add('icon--' + icon.size);
-      iconNode.classList.add('icon--' + icon.color);
-      iconNode.append(iconImage);
-      iconNode.append(iconTitle);
-      categoryIcons.append(iconNode);
-    });
+      .filter(icon => icon.category === category)
+      .sort(compare)
+      .map(icon => {
+        const iconNode = document.createElement('div');
+        const iconImage = document.createElement('img');
+        const iconTitle = document.createElement('div');
+        iconTitle.textContent = icon.name;
+        iconImage.src = 'icons/' + icon.category + '/' + icon.fileName;
+        iconImage.onload = e =>
+          $(this)
+            .parent('.icon')
+            .removeClass('icon--inactive');
+        iconNode.classList.add('icon');
+        iconNode.classList.add('icon--inactive');
+        iconTitle.classList.add('icon__title');
+        iconImage.classList.add('icon__image');
+        iconNode.classList.add('icon--' + icon.size);
+        iconNode.classList.add('icon--' + icon.color);
+        iconNode.append(iconImage);
+        iconNode.append(iconTitle);
+        categoryIcons.append(iconNode);
+      });
   }
 
-
   $('.icons').html(icons);
-}
+};

@@ -1,0 +1,48 @@
+@import '../../vars';
+
+.icons {
+  margin: 0 auto;
+  color: black;
+  width: 100%;
+  height: 100%;
+  margin-top: 50px;
+
+  &--size-all {
+    .icon {
+      width: 320px / 4 !important;
+      height: 60px !important;
+    }
+  }
+
+  &--black {
+    background: black;
+
+    .categories__list {
+      background: black;
+    }
+
+    .category__name {
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .icon__title {
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .icon--inactive img {
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+  }
+
+  .icon--input {
+    display: none;
+  }
+
+  &--compare {
+    width: 400px;
+
+    .icon--input {
+      display: flex;
+    }
+  }
+}

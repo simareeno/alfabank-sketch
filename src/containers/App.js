@@ -1,18 +1,26 @@
 import React, { Component, Fragment } from 'react';
-
+import Type from 'prop-types';
 import Header from '../components/header/header';
+import Icons from '../components/icons/icons';
 
 import './App.css';
+import iconsObject from '../icons.json';
 
-class App extends Component {
+export default class App extends Component {
+  static propTypes = {
+    categories: Type.object
+  };
+
+  static defaultProps = {
+    categories: iconsObject
+  };
+
   render() {
     return (
       <Fragment>
         <Header />
-        <div className="icons icons--size-m" />
+        <Icons categories={this.props.categories} />
       </Fragment>
     );
   }
 }
-
-export default App;
