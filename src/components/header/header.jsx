@@ -7,7 +7,7 @@ import Select from 'arui-feather/select';
 
 import './header.css';
 
-import { filterSearch, filterColor, filterSize } from '../../../actions/app';
+import { filterSearch, filterColor, filterSize } from '../../actions/app';
 
 const mapStateToProps = ({ app, routing }) => {
   return {
@@ -46,7 +46,7 @@ const SIZES = [
 ];
 
 // @connect(mapStateToProps, mapDispatchToProps)
-export default class Header extends Component {
+class Header extends Component {
   static propTypes = {
     actions: Type.shape({
       filterSearch: Type.func,
@@ -94,3 +94,5 @@ export default class Header extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
