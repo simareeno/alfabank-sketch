@@ -7,6 +7,7 @@
   margin: 10px 0;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+  background-repeat: no-repeat;
 
   &:active {
     cursor: -webkit-drag;
@@ -16,36 +17,34 @@
     cursor: -webkit-drag;
   }
 
-  &--s {
+  &_size_s {
     width: 320px / 4;
     height: 18px * 2;
   }
 
-  &--m {
+  &_size_m {
     width: 320px / 4;
     height: 24px * 2;
   }
 
-  &--l {
+  &_size_l {
     width: 320px / 4;
     height: 30px * 2;
   }
 
-  &--xl {
+  &_size_xl {
     width: 320px / 4;
     height: 36px * 2;
   }
 
-  &--xxl {
+  &_size_xxl {
     width: 320px / 4;
     height: 48px * 2;
   }
 
-  &--white {
-    img {
-      background: black;
-      padding: 2px;
-    }
+  &_theme_alfa-on-color {
+    background-color: black;
+    padding: 2px;
   }
 
   &--inactive {
@@ -61,7 +60,7 @@
 
   &--input {
     &:after {
-      content: '';
+      content: "";
       display: block;
       position: absolute;
       right: -10px;

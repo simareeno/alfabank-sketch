@@ -6,11 +6,11 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build-css && run-p -ncr watch-css start-js",
-    "start-js": "react-scripts start",
+    "start-js": "react-app-rewired start",
     "build": "run-s -n build-css build-js",
-    "build-js": "react-scripts build",
+    "build-js": "react-app-rewired build",
     "test": "run-s -n build-css test-js",
-    "test-js": "react-scripts test --env=jsdom",
+    "test-js": "react-app-rewired test --env=jsdom",
     "build-css": "node-less-chokidar src",
     "watch-css": "node-less-chokidar src --watch",
     "build:icons": "node ./src/utils/build-icons.js"
@@ -18,10 +18,15 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "alfa-ui-primitives": "^1.3.1",
     "node-less-chokidar": "^0.1.2",
     "npm-run-all": "^4.0.2",
     "prettier": "^1.10.2",
+    "react-app-rewire-provide-plugin": "^1.0.0",
+    "react-app-rewired": "^1.4.1",
+    "react-loadable": "^5.3.1",
     "react-scripts": "1.0.17",
+    "shortid": "^2.2.8",
     "uppercamelcase": "^3.0.0"
   },
   "dependencies": {

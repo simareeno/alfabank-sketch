@@ -7,6 +7,7 @@
   margin: 10px 0;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+  background-repeat: no-repeat;
 }
 .icon:active {
   cursor: -webkit-drag;
@@ -14,28 +15,28 @@
 .icon:focus {
   cursor: -webkit-drag;
 }
-.icon--s {
+.icon_size_s {
   width: 80px;
   height: 36px;
 }
-.icon--m {
+.icon_size_m {
   width: 80px;
   height: 48px;
 }
-.icon--l {
+.icon_size_l {
   width: 80px;
   height: 60px;
 }
-.icon--xl {
+.icon_size_xl {
   width: 80px;
   height: 72px;
 }
-.icon--xxl {
+.icon_size_xxl {
   width: 80px;
   height: 96px;
 }
-.icon--white img {
-  background: black;
+.icon_theme_alfa-on-color {
+  background-color: black;
   padding: 2px;
 }
 .icon--inactive {
@@ -47,7 +48,7 @@
   border-radius: 5px;
 }
 .icon--input:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   right: -10px;

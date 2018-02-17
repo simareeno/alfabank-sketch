@@ -1,18 +1,17 @@
-import React, { Component, Fragment } from 'react';
-import Type from 'prop-types';
-import Header from '../components/header/header';
-import Icons from '../components/icons/icons';
-
-import './App.css';
-import iconsObject from '../icons.json';
+import React, { Component, Fragment } from "react";
+import Type from "prop-types";
+import Header from "../components/header/header";
+import Icons from "../components/icons/icons";
+import "./App.css";
+import iconsJSON from "../icons.json";
 
 export default class App extends Component {
   static propTypes = {
-    categories: Type.object
+    categories: Type.array
   };
 
   static defaultProps = {
-    categories: iconsObject
+    categories: iconsJSON.categories
   };
 
   render() {

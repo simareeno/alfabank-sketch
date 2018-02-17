@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
-import Type from 'prop-types';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import Input from 'arui-feather/input';
-import Select from 'arui-feather/select';
+import React, { Component } from "react";
+import Type from "prop-types";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import Input from "arui-feather/input";
+import Select from "arui-feather/select";
 
-import './header.css';
+import "./header.css";
 
-import { filterSearch, filterColor, filterSize } from '../../actions/app';
+import { filterSearch, filterColor, filterSize } from "../../actions/app";
 
-const mapStateToProps = ({ app, routing }) => {
+const mapStateToProps = state => {
+  console.log(state);
   return {
-    view: app.sidebarView,
-    route: routing.location && routing.location.pathname,
-    htmlExport: app.htmlExport
+    actions: state
   };
 };
 
@@ -31,21 +30,20 @@ const mapDispatchToProps = dispatch => {
 };
 
 const COLORS = [
-  { value: 'all', text: 'Все' },
-  { value: 'black', text: 'Черные' },
-  { value: 'white', text: 'Белые' }
+  { value: "all", text: "Все" },
+  { value: "black", text: "Черные" },
+  { value: "white", text: "Белые" }
 ];
 
 const SIZES = [
-  { value: 'all', text: 'Все' },
-  { value: 's', text: 'S' },
-  { value: 'm', text: 'M' },
-  { value: 'l', text: 'L' },
-  { value: 'xl', text: 'XL' },
-  { value: 'xxl', text: 'XXL' }
+  { value: "all", text: "Все" },
+  { value: "s", text: "S" },
+  { value: "m", text: "M" },
+  { value: "l", text: "L" },
+  { value: "xl", text: "XL" },
+  { value: "xxl", text: "XXL" }
 ];
 
-// @connect(mapStateToProps, mapDispatchToProps)
 class Header extends Component {
   static propTypes = {
     actions: Type.shape({
@@ -63,7 +61,8 @@ class Header extends Component {
     this.props.actions.filterSize(size);
   };
 
-  handleFilerSearch = query => {
+  handleFilterSearch = query => {
+    console.log(query);
     this.props.actions.filterSearch(query);
   };
 
@@ -71,24 +70,11 @@ class Header extends Component {
     return (
       <header className="header">
         <Input
-          className={'search header__search'}
-          placeholder={'Поиск'}
-          width={'available'}
-          size={'l'}
-        />
-        <Select
-          className={'header__size'}
-          mode={'radio'}
-          size={'l'}
-          options={SIZES}
-          equalPopupWidth={true}
-        />
-        <Select
-          className={'header__color'}
-          mode={'radio'}
-          size={'l'}
-          options={COLORS}
-          equalPopupWidth={true}
+          className={"search header__search"}
+          placeholder={"Поиск"}
+          width={"available"}
+          size={"l"}
+          onChange={value => this.handleFilterSearch(value)}
         />
       </header>
     );

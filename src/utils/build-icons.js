@@ -1,49 +1,99 @@
-const path = require('path');
-const fs = require('fs');
-const uppercamelcase = require('uppercamelcase');
+const del = require("del");
+const fs = require("fs");
+const glob = require("glob");
+const path = require("path");
 
-const INPUT_FOLDER = 'node_modules/arui-feather/icon';
-const OUTPUT_FILE = 'src/icons.json';
+const OUTPUT_FILE = "src/icons.json";
 
+const { getFilename, ICON_REGEXP } = require("./build-icons-utils");
+
+console.info("⏳ Creating icons...");
+console.time("In time");
+
+// Folders to add
+const CATEGORIES = [
+  "action",
+  "banking",
+  "brand",
+  "category",
+  "currency",
+  "entity",
+  "file",
+  "ui",
+  "user"
+];
+
+class Icon {
+  constructor(iconPath) {
+    this.fileName = getFilename(iconPath);
+    this.name = this.getName();
+    this.category = this.getCategory(iconPath);
+    this.size = this.getSize();
+    this.color = this.getColor();
+    this.colored = this.getColor() === "color";
+  }
+
+  // Category
+  getCategory(iconPath) {
+    return path.basename(path.dirname(iconPath));
+  }
+
+  // Name
+  getName() {
+    return this.fileName.match(ICON_REGEXP)[3];
+  }
+
+  // Size
+  getSize() {
+    return this.fileName.match(ICON_REGEXP)[5];
+  }
+
+  // Color
+  getColor() {
+    return this.fileName.match(ICON_REGEXP)[7];
+  }
+
+  // Color in arui fashion
+  getAruiColor() {
+    let color = this.getColor();
+    if (color === "white") return "alfa-on-color";
+    if (color === "black") return "alfa-on-white";
+    return false;
+  }
+}
+
+// Get icons
+const iconsObj = {
+  categories: []
+};
+
+CATEGORIES.forEach(folder => {
+  const folderArray = [];
+  glob
+    .sync(`./node_modules/alfa-ui-primitives/icons/${folder}/**/*.svg`)
+    .map(file => folderArray.push(new Icon(file)));
+  iconsObj.categories.push(folderArray);
+});
+
+// Delete folders
 const clean = new Promise(resolve => {
-  if (fs.existsSync(path)) fs.unlinkSync(OUTPUT_FILE);
+  del.sync(OUTPUT_FILE);
   resolve();
 });
 
-const getCategories = new Promise((resolve, reject) => {
-  const categories = fs
-    .readdirSync(INPUT_FOLDER)
-    .map(name => path.join(INPUT_FOLDER, name))
-    .filter(source => fs.lstatSync(source).isDirectory());
-  categories ? resolve(categories) : reject('Categories missing');
-});
-
-const getIcons = categories =>
-  new Promise((resolve, reject) => {
-    const icons = categories.reduce(
-      (result, category, index, array) => {
-        const total = result;
-        total.icons = [
-          ...total.icons,
-          fs.readdirSync(category).map(icon => {
-            return {
-              name: icon,
-              category: path.basename(category),
-              componentName: `Icon${uppercamelcase(icon)}`
-            };
-          })
-        ];
-        return total;
-      },
-      { icons: [] }
-    );
-    icons ? resolve(icons) : reject('Icons missing');
+const writeJSON = () =>
+  new Promise(resolve => {
+    console.log(JSON.stringify(iconsObj));
+    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(iconsObj), "utf8");
+    resolve();
   });
 
-clean
-  .then(() => getCategories)
-  .then(categories => getIcons(categories))
-  .then(icons => fs.writeFileSync(OUTPUT_FILE, JSON.stringify(icons)))
+// Main process. Clean icons & writes JSON.
+Promise.all([clean, writeJSON()])
+  .then(() => {
+    console.info(`Created: ${iconsObj.icons.length} icons`);
+    console.timeEnd("In time");
+  })
   .catch(err => {
     if (err) throw err;
   });

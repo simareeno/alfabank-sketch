@@ -2,7 +2,7 @@ import {
   FILTER_SIZE_RESOLVED,
   FILTER_COLOR_RESOLVED,
   FILTER_SEARCH_RESOLVED
-} from '../actions/types/app';
+} from "../actions/types/app";
 
 export default function appReducer(state = {}, action) {
   switch (action.type) {
