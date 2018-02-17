@@ -1,26 +1,27 @@
-const del = require("del");
-const fs = require("fs");
-const glob = require("glob");
-const path = require("path");
+const del = require('del');
+const fs = require('fs');
+const glob = require('glob');
+const path = require('path');
 
-const OUTPUT_FILE = "src/icons.json";
+const OUTPUT_IMAGES = 'src/images/icons';
+const OUTPUT_JSON = 'src/icons.json';
 
-const { getFilename, ICON_REGEXP } = require("./build-icons-utils");
+const { getFilename, ICON_REGEXP } = require('./build-icons-utils');
 
-console.info("⏳ Creating icons...");
-console.time("In time");
+console.info('⏳ Creating icons...');
+console.time('In time');
 
 // Folders to add
 const CATEGORIES = [
-  "action",
-  "banking",
-  "brand",
-  "category",
-  "currency",
-  "entity",
-  "file",
-  "ui",
-  "user"
+  'action',
+  'banking',
+  'brand',
+  'category',
+  'currency',
+  'entity',
+  'file',
+  'ui',
+  'user'
 ];
 
 class Icon {
@@ -30,7 +31,7 @@ class Icon {
     this.category = this.getCategory(iconPath);
     this.size = this.getSize();
     this.color = this.getColor();
-    this.colored = this.getColor() === "color";
+    this.colored = this.getColor() === 'color';
   }
 
   // Category
@@ -56,43 +57,40 @@ class Icon {
   // Color in arui fashion
   getAruiColor() {
     let color = this.getColor();
-    if (color === "white") return "alfa-on-color";
-    if (color === "black") return "alfa-on-white";
+    if (color === 'white') return 'alfa-on-color';
+    if (color === 'black') return 'alfa-on-white';
     return false;
   }
 }
 
-// Get icons
-const iconsObj = {
-  categories: []
-};
-
-CATEGORIES.forEach(folder => {
-  const folderArray = [];
-  glob
-    .sync(`./node_modules/alfa-ui-primitives/icons/${folder}/**/*.svg`)
-    .map(file => folderArray.push(new Icon(file)));
-  iconsObj.categories.push(folderArray);
-});
-
 // Delete folders
 const clean = new Promise(resolve => {
-  del.sync(OUTPUT_FILE);
+  del.sync([OUTPUT_IMAGES, OUTPUT_JSON]);
   resolve();
 });
 
-const writeJSON = () =>
+const build = () =>
   new Promise(resolve => {
-    console.log(JSON.stringify(iconsObj));
-    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(iconsObj), "utf8");
+    fs.mkdirSync(OUTPUT_IMAGES);
+    const data = CATEGORIES.map(category => {
+      return {
+        name: category,
+        items: glob
+          .sync(`./node_modules/alfa-ui-primitives/icons/${category}/**/*.svg`)
+          .map(file => {
+            fs.copyFileSync(file, `${OUTPUT_IMAGES}/${path.basename(file)}`);
+            return new Icon(file);
+          })
+      };
+    });
+    fs.writeFileSync(OUTPUT_JSON, JSON.stringify(data), 'utf8');
     resolve();
   });
 
-// Main process. Clean icons & writes JSON.
-Promise.all([clean, writeJSON()])
+// Main process. Clean icons & copies svgs & writes JSON.
+Promise.all([clean, build()])
   .then(() => {
-    console.info(`Created: ${iconsObj.icons.length} icons`);
-    console.timeEnd("In time");
+    console.timeEnd('In time');
   })
   .catch(err => {
     if (err) throw err;

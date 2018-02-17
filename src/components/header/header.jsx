@@ -10,7 +10,6 @@ import "./header.css";
 import { filterSearch, filterColor, filterSize } from "../../actions/app";
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     actions: state
   };
@@ -62,7 +61,6 @@ class Header extends Component {
   };
 
   handleFilterSearch = query => {
-    console.log(query);
     this.props.actions.filterSearch(query);
   };
 
