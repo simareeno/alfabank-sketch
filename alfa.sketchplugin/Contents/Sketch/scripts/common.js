@@ -9,7 +9,7 @@ var MD = {
     this.version = this.context.plugin.version() + "";
     this.MDVersion = this.prefs.stringForKey("MDVersion") + "" || 0;
 
-    this.baseUrl = "https://github.yandex-team.ru/pages/chetverukhin/serp-icons-app/";
+    this.baseUrl = "http://chetverukhin.ru/alfabank-sketch/";
 
     this.extend(context);
     this.pluginRoot = this.scriptPath
@@ -1169,12 +1169,13 @@ MD.extend({
       data = {};
 
     return this.MDPanel({
-      url: MD.baseUrl,
+      // url: this.pluginSketch + "/panel/importer/index.html",
+      url: MD.baseUrl + "demo.html",
       remote: true,
       width: 520,
       height: 500,
       data: data,
-      identifier: 'ru.serp-icons.sketch.icons',
+      identifier: 'ru.alfabank.sketch.icons',
       floatWindow: false,
       callback: function (data) {
         self.configs = self.setConfigs({
