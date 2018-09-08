@@ -1,4 +1,0 @@
-function openURL(url){
-  var nsurl = NSURL.URLWithString(url);
-  NSWorkspace.sharedWorkspace().openURL(nsurl)
-}

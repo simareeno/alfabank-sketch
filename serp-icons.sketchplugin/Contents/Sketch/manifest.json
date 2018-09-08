@@ -1,21 +1,21 @@
 {
-  "name": "Alfa",
-  "identifier": "ru.alfabank.sketch",
+  "name": "SerpIcons",
+  "identifier": "ru.serp-icons.sketch",
   "version": "1.0.0",
-  "description": "Alfa design components. Always actual.",
+  "description": "Иконки серпа",
   "appcast": "https://raw.githubusercontent.com/simareeno/alfabank-sketch/master/appcast.xml",
-  "icon" : "alfabank-sketch.png",
+  "icon" : "serp-icons-sketch.png",
   "authorEmail": "sima@chetverukhin.ru",
   "author": "Simon Chetverukhin",
   "menu": {
     "isRoot": true,
     "shortcut": "",
     "items": ["commandIcons"],
-    "title": "🅰️ Alfa"
+    "title": "Иконки серпа"
   },
   "commands": [
     {
-      "name": "🅰️ Icons",
+      "name": "Иконки серпа",
       "identifier": "commandIcons",
       "handler": "commandIcons",
       "script": "md.sketchscript",
